@@ -4,11 +4,11 @@ from tkinter import messagebox
 class Menu:
     def __init__(self,menu_root):
         self.menu_root = menu_root
-        self.menu_root.title ('Gestor de Base de Datos' )
+        self.menu_root.title ('GestoSchool' )
 
         # ----- Basic Layout ----- 
         self.menu_root.geometry("800x500")
-        self.menu_root.minsize(800,500)
+        self.menu_root.minsize(600,300)
         self.menu_root.config(background='#ffffff')
         icon = tk.PhotoImage(file = 'logo.png')
         self.menu_root.iconphoto(True,icon)
