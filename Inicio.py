@@ -1,10 +1,13 @@
 import tkinter as tk
 from tkinter import messagebox
+import sqlite3
+from passChange import PassApp
 
 class LoginApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Sistema de Login")
+        self.root.title("GestoSchool")
+        self.root.iconbitmap("icono.ico")
 
         self.img = tk.PhotoImage(file='logo.png')
 
@@ -46,12 +49,26 @@ class LoginApp:
     def login(self):
         username = self.username_entry.get()
         password = self.password_entry.get()
-        
-        if username == "admin" and password == "password":
-            messagebox.showinfo("Login Exitoso", "¡Bienvenido, {}!".format(username))
-        else:
-            messagebox.showerror("Error de Login", "Usuario o contraseña incorrectos")
 
+        tabla="usuarios"
+        print(f"Registros tabla: {tabla}")
+        conexion = sqlite3.connect("Colegio.db")
+        cursor=conexion.execute(f"select * from {tabla}")
+        for fila in cursor:
+            usuario = fila[0]
+            contrasena = fila[1]
+            if username == usuario and password == contrasena:
+                if contrasena == '':
+                    #Mal 
+                    PassApp(self.root)
+                    
+                else:
+                    messagebox.showinfo("Login Exitoso", "¡Bienvenido, {}!".format(username))
+            else:
+                messagebox.showerror("Error de Login", "Usuario o contraseña incorrectos")
+
+        conexion.close()
+        
 if __name__ == "__main__":
     root = tk.Tk()
     app = LoginApp(root)
@@ -63,5 +80,4 @@ if __name__ == "__main__":
 
     posicion = str(ancho_ventana) + "x" + str(alto_ventana) + "+" + str(x_ventana) + "+" + str(y_ventana)
     root.geometry(posicion)
-    # root.geometry("700x400")
     root.mainloop()
