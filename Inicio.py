@@ -2,6 +2,9 @@ import tkinter as tk
 from tkinter import messagebox
 import sqlite3
 from passChange import PassApp
+import importaciones as imp
+import bcrypt
+import menu as menu
 
 class LoginApp:
     def __init__(self, root):
@@ -54,30 +57,39 @@ class LoginApp:
         print(f"Registros tabla: {tabla}")
         conexion = sqlite3.connect("Colegio.db")
         cursor=conexion.execute(f"select * from {tabla}")
+        consultas = {}
         for fila in cursor:
-            usuario = fila[0]
-            contrasena = fila[1]
-            if username == usuario and password == contrasena:
-                if contrasena == '':
-                    #Mal 
+            consultas.update({fila[0] : fila[1]})
+            # conexion.execute(f"INSERT INTO {tabla} VALUES('user1','')")
+            # conexion.commit()
+            
+        for u,p in consultas.items():
+            imp.usuarioGeneral = u
+            passComp = str(p)
+            
+            if username == u:
+                if username == u and p == '':
+                    self.login_frame.destroy() 
                     PassApp(self.root)
-                    
                 else:
-                    messagebox.showinfo("Login Exitoso", "¡Bienvenido, {}!".format(username))
-            else:
-                messagebox.showerror("Error de Login", "Usuario o contraseña incorrectos")
+                    if username == u and bcrypt.checkpw(password.encode('utf-8'),passComp.encode('utf-8')):
+                        self.login_frame.destroy()
+                        imp.ancho_ventana = 850
+                        imp.alto_ventana = 650
+                        menu.Menu(self.root)
+                    else:
+
+                        messagebox.showerror("Error de Login", "Usuario o contraseña incorrectos")
 
         conexion.close()
         
 if __name__ == "__main__":
     root = tk.Tk()
     app = LoginApp(root)
-    ancho_ventana = 600
-    alto_ventana = 300
 
-    x_ventana = root.winfo_screenwidth() // 2 - ancho_ventana // 2
-    y_ventana = root.winfo_screenheight() // 2 - alto_ventana
+    x_ventana = root.winfo_screenwidth() // 2 - imp.ancho_ventana // 2
+    y_ventana = root.winfo_screenheight() // 2 - imp.alto_ventana
 
-    posicion = str(ancho_ventana) + "x" + str(alto_ventana) + "+" + str(x_ventana) + "+" + str(y_ventana)
+    posicion = str(imp.ancho_ventana) + "x" + str(imp.alto_ventana) + "+" + str(x_ventana) + "+" + str(y_ventana)
     root.geometry(posicion)
     root.mainloop()

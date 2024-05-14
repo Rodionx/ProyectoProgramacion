@@ -6,7 +6,7 @@ cur = conn.cursor()
 
 cur.execute("""CREATE TABLE usuarios (
     usuario VARCHAR(20),
-    pass VARCHAR(50)
+    pass VARCHAR(100)
 )""")
 
 

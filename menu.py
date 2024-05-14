@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+import importaciones as imp
 
 class Menu:
     def __init__(self,menu_root):
@@ -7,8 +8,7 @@ class Menu:
         self.menu_root.title ('GestoSchool' )
 
         # ----- Basic Layout ----- 
-        self.menu_root.geometry("800x500")
-        self.menu_root.minsize(600,300)
+        self.menu_root.geometry(f"{imp.ancho_ventana}x{imp.alto_ventana}")
         self.menu_root.config(background='#ffffff')
         icon = tk.PhotoImage(file = 'logo.png')
         self.menu_root.iconphoto(True,icon)
@@ -31,17 +31,17 @@ class Menu:
         Title.grid(row= 0 , columnspan = 6 ,sticky='n')
         
         #---- Icon Labels ----
-        img_profesor = tk.PhotoImage(file='menu_icons\profesora.png')
+        img_profesor = tk.PhotoImage(file='profesora.png')
         profesores_label= tk.Label(self.menu_root,width=5,image=img_profesor)
         
-        img_notas = tk.PhotoImage(file='menu_icons\grades.png')
+        img_notas = tk.PhotoImage(file='grades.png')
         notas_label = tk.Label(self.menu_root,width=5, image=img_notas)
 
-        img_alumnos = tk.PhotoImage(file='menu_icons\estudiante.png')
+        img_alumnos = tk.PhotoImage(file='estudiante.png')
         alumnos_label = tk.Label(self.menu_root,width=5,image=img_alumnos)
 
 
-        img_asignaturas = tk.PhotoImage(file='menu_icons\clases.png')
+        img_asignaturas = tk.PhotoImage(file='clases.png')
         asignaturas_label = tk.Label(self.menu_root,width=5, image=img_asignaturas)
 
         # ---- Icon Placement ----
@@ -65,13 +65,3 @@ class Menu:
         asignaturas_button.grid(row=2,column=4,padx= 20,pady=10,sticky='we')
 
         
-
-
-
-        self.menu_root.mainloop()
-
-
-
-
-menu = tk.Tk()
-window = Menu(menu)

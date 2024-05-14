@@ -1,8 +1,14 @@
 import tkinter as tk
 from tkinter import messagebox
+import bcrypt
 import sqlite3
+import importaciones as imp
+import menu as menu
+import Inicio as inicio
 
 class PassApp:
+    pos = 0
+    
     def __init__(self, root):
         self.root = root
         self.root.title("Creacion de Contraseña")
@@ -35,22 +41,30 @@ class PassApp:
         # Centra el panel de login en la ventana
         self.pass_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
+
     def login(self):
         firstPass = self.fPassEntry.get()
         secondPass = self.sPassEntry.get()
 
+        if firstPass == secondPass: 
+            cryptPass= firstPass.encode('utf-8')
+            imp.salt = bcrypt.gensalt()
+            imp.hashed = bcrypt.hashpw(cryptPass,imp.salt)
+            imp.hashed = imp.hashed.decode('utf-8')
+            #Cambiar contraseña en base de datos
+            try:
+                tabla="usuarios"
+                print(f"Registros tabla: {tabla}")
+                conexion = sqlite3.connect("Colegio.db")
+                conexion.execute(f"UPDATE {tabla} SET pass = '{imp.hashed}' WHERE usuario = '{imp.usuarioGeneral}'")
+                conexion.commit()
+            except Exception as e:
+                print(e)
+            self.login_frame.destroy()
+            imp.ancho_ventana = 850
+            imp.alto_ventana = 650
+            menu.Menu(self.root)
+        else:
+                    messagebox.showerror("Las contraseñas no coinciden", "Las contraseñas no coinciden\nIntentelo de nuevo")
+
         
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = PassApp(root)
-    ancho_ventana = 600
-    alto_ventana = 300
-
-    x_ventana = root.winfo_screenwidth() // 2 - ancho_ventana // 2
-    y_ventana = root.winfo_screenheight() // 2 - alto_ventana
-
-    posicion = str(ancho_ventana) + "x" + str(alto_ventana) + "+" + str(x_ventana) + "+" + str(y_ventana)
-    root.geometry(posicion)
-    # root.geometry("700x400")
-    root.mainloop()
