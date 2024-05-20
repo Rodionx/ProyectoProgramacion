@@ -6,7 +6,7 @@ cur = conn.cursor()
 
 cur.execute("""CREATE TABLE usuarios (
     usuario VARCHAR(20),
-    pass VARCHAR(50)
+    pass VARCHAR(100)
 )""")
 
 
@@ -47,7 +47,7 @@ cur.execute("""CREATE TABLE notas (
 """)
 
 
-cur.execute(""" INSERT INTO usuarios VALUES('admin', 'password');""")
+cur.execute(""" INSERT INTO usuarios VALUES('admin', '');""")
 
 
 list_profes = ["INSERT INTO profesores VALUES('X11111111', 'Ricardo', 'Palomos');",
