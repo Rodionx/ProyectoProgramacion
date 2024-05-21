@@ -1,8 +1,6 @@
 import sqlite3 as sql
 
 
-conn = sql.connect('ProyectoProgramacion\Colegio.db')
-c = conn.cursor()
 '''
 def mod_data_profs(dni,x,y):
             conn = sql.connect('ProyectoProgramacion\Colegio.db')
@@ -25,6 +23,36 @@ def mod_data_profs(dni,x,y):
 
 
 # Fetch data from the database
+
+def mod_data_profs(dni,x,y):
+            try:
+              conn = sql.connect('Colegio.db')
+              c = conn.cursor()
+
+              c.execute('''UPDATE profesores
+                      SET
+                          nombre = ?,
+                          apellido = ?
+                      WHERE
+                          DNI_prof = ?
+
+              ''',(x,y,dni))
+
+
+              conn.commit()
+              print("Update successful")
+            except:
+              print("Error Ocurred")
+            finally:
+              conn.close()
+
+          
+mod_data_profs('X11111111','Ricardo','Palomos')
+
+
+
+conn = sql.connect('Colegio.db')
+c = conn.cursor()
 c.execute("SELECT * FROM profesores")  # Replace 'your_table_name' with the actual table name
 data = c.fetchall()
 print(data)
@@ -34,4 +62,3 @@ for column in c.description:
 
 # Close the connection
 conn.close()
-print (type(data))
