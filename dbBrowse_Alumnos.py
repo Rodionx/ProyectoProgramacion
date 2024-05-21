@@ -29,37 +29,37 @@ class myBrowse:
         self.row2 = self.browser_root.rowconfigure(2,weight= 1)
         self.row3 = self.browser_root.rowconfigure(3,weight= 1)
 
-        #--Frame Para Entradas
-        self.frame_entry = tk.Frame(self.browser_root,bg='#EDEADE')
-        self.frame_entry.grid(column=1,row=1,padx=1,pady=1,sticky='nswe')
+        # #--Frame Para Entradas
+        # self.frame_entry = tk.Frame(self.browser_root,bg='#EDEADE')
+        # self.frame_entry.grid(column=1,row=1,padx=1,pady=1,sticky='nswe')
 
-        # -- Entries
-        self.dni = tk.Entry(self.frame_entry,bd=3)
-        self.nombre = tk.Entry(self.frame_entry,bd=3)
-        self.apellidos = tk.Entry(self.frame_entry,bd=3)
+        # # -- Entries
+        # self.dni = tk.Entry(self.frame_entry,bd=3)
+        # self.nombre = tk.Entry(self.frame_entry,bd=3)
+        # self.apellidos = tk.Entry(self.frame_entry,bd=3)
 
-        self.dni_label = tk.Label(self.frame_entry,text='DNI')
-        self.nombre_label = tk.Label(self.frame_entry,text='Nombre')
-        self.apellidos_label = tk.Label(self.frame_entry,text='Apellido')
+        # self.dni_label = tk.Label(self.frame_entry,text='DNI')
+        # self.nombre_label = tk.Label(self.frame_entry,text='Nombre')
+        # self.apellidos_label = tk.Label(self.frame_entry,text='Apellido')
 
-        self.dni.grid(row=1,column=1,sticky='w',padx='5',pady='5')
-        self.nombre.grid(row=2,column=1,sticky='ew',padx='5',pady='5')
-        self.apellidos.grid(row=3,column=1,sticky='e',padx='5',pady='5')
+        # self.dni.grid(row=1,column=1,sticky='w',padx='5',pady='5')
+        # self.nombre.grid(row=2,column=1,sticky='ew',padx='5',pady='5')
+        # self.apellidos.grid(row=3,column=1,sticky='e',padx='5',pady='5')
 
-        self.dni_label.grid(row=1,column=2,sticky='w',padx='5',pady='5')
-        self.nombre_label.grid(row=2,column=2,sticky='ew',padx='5',pady='5')
-        self.apellidos_label.grid(row=3,column=2,sticky='e',padx='5',pady='5')
+        # self.dni_label.grid(row=1,column=2,sticky='w',padx='5',pady='5')
+        # self.nombre_label.grid(row=2,column=2,sticky='ew',padx='5',pady='5')
+        # self.apellidos_label.grid(row=3,column=2,sticky='e',padx='5',pady='5')
 
-        # -- Botones
-        self.boton_insertar = tk.Button(self.frame_entry,text='Insertar Entrada')
-        self.boton_insertar.grid(row=4, column = 1,pady=10)
+        # # -- Botones
+        # self.boton_insertar = tk.Button(self.frame_entry,text='Insertar Entrada')
+        # self.boton_insertar.grid(row=4, column = 1,pady=10)
 
-        self.boton_modificar = tk.Button(self.frame_entry,text='Modificar Entrada')
-        self.boton_modificar.grid(row=5, column = 1,pady=10)
+        # self.boton_modificar = tk.Button(self.frame_entry,text='Modificar Entrada')
+        # self.boton_modificar.grid(row=5, column = 1,pady=10)
 
         
-        self.boton_modificar = tk.Button(self.frame_entry,text='Eliminar Entrada')
-        self.boton_modificar.grid(row=6, column = 1,pady=10)
+        # self.boton_modificar = tk.Button(self.frame_entry,text='Eliminar Entrada')
+        # self.boton_modificar.grid(row=6, column = 1,pady=10)
 
 
         # -- Frame para SQLITE display
@@ -99,11 +99,11 @@ class myBrowse:
             label = tk.Label(self.frame_data, text=column_name, borderwidth=1, relief="solid", bg="lightgrey")
             label.grid(row=0, column=col_index, sticky="nsew")
 
-        # Display data inside the frame
-        for row_index, row_data in enumerate(data):
-            for col_index, cell_value in enumerate(row_data):
-                label = tk.Label(self.frame_data, text=cell_value, borderwidth=1, relief="solid",width=10)
-                label.grid(row=row_index+1, column=col_index, sticky = 'nsew')
+        # # Display data inside the frame
+        # for row_index, row_data in enumerate(data):
+        #     for col_index, cell_value in enumerate(row_data):
+        #         label = tk.Label(self.frame_data, text=cell_value, borderwidth=1, relief="solid",width=10)
+        #         label.grid(row=row_index+1, column=col_index, sticky = 'nsew')
 
 
          # -- Funciones de SQL       
