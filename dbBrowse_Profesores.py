@@ -1,7 +1,7 @@
 import tkinter as tk
 import sqlite3 as sql
 from tkinter import ttk
-import sql_profesores as query
+import sql_profesores as imp
 
 class myBrowse:
     # Create Window
@@ -58,14 +58,14 @@ class myBrowse:
         self.apellidos_label.grid(row=3,column=2,sticky='nsew',padx='5',pady='5',)
 
         # -- Botones
-        self.boton_insertar = tk.Button(self.frame_entry,text='Insertar Entrada',command=lambda : query.insert_profs(self.dni.get(),self.nombre.get(),self.apellidos.get()))
+        self.boton_insertar = tk.Button(self.frame_entry,text='Insertar Entrada',command=lambda : imp.insert_profs(self.dni.get(),self.nombre.get(),self.apellidos.get()))
         self.boton_insertar.grid(row=4, column = 1,pady=10,padx = 5 ,sticky='nsew')
 
-        self.boton_modificar = tk.Button(self.frame_entry,text='Modificar Entrada',command=lambda: query.mod_data_profs(self.dni.get(),self.nombre.get(),self.apellidos.get()))
+        self.boton_modificar = tk.Button(self.frame_entry,text='Modificar Entrada',command=lambda: imp.mod_data_profs(self.dni.get(),self.nombre.get(),self.apellidos.get()))
         self.boton_modificar.grid(row=4, column = 2,pady=10,padx = 5 ,sticky='nsew')
 
         
-        self.boton_modificar = tk.Button(self.frame_entry,text='Eliminar Entrada',command=lambda : query.delete_data_profs(self.dni.get()))
+        self.boton_modificar = tk.Button(self.frame_entry,text='Eliminar Entrada',command=lambda : imp.delete_data_profs(self.dni.get()))
         self.boton_modificar.grid(row=4, column = 3,pady=10,padx = 5 ,sticky='nsew')
 
                 
