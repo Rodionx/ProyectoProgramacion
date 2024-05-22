@@ -59,3 +59,21 @@ def insert_profs(dni,nombre,apellido):
             finally:
                 conn.close()
 
+def data_display(treeframe):
+    # Connect to the SQLite database
+    conn = sqlite.connect('Colegio.db')
+    c = conn.cursor()
+
+    c.execute("PRAGMA table_info(profesores)")  # Replace 'your_table_name' with the actual table name
+    column_names = [row[1] for row in c.fetchall()]
+    
+    # Fetch data from the database
+    c.execute("SELECT * FROM profesores")  # Replace 'your_table_name' with the actual table name
+    data = c.fetchall()
+    
+    # Close the connection
+    conn.close()
+    treeframe.delete(*treeframe.get_children())
+    for tupla in data:
+            lista = list(tupla)
+            treeframe.insert("",'end',text=id,values=tupla)
