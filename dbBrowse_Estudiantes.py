@@ -81,7 +81,7 @@ class myBrowse:
         self.boton_insertar = tk.Button(self.frame_entry,text='Insertar Entrada', command= lambda : imp.insert_data_student(self.dni.get(),self.nombre.get(),self.apellidos.get(),self.clase.get(),self.edad.get(),self.tutor.get(),self.contacto.get()))
         self.boton_insertar.grid(row=1, column = 4,pady=10,padx=0)
 
-        self.boton_modificar = tk.Button(self.frame_entry,text='Modificar Entrada',command= lambda : imp.mod_data_student(self.dni.get(),self.nombre.get(),self.apellidos.get(),self.clase.get(),self.edad.get(),self.tutor.get(),self.contacto.get()))
+        self.boton_modificar = tk.Button(self.frame_entry,text='Modificar Entrada',command= lambda : imp.mod_data_student(self.dni.get(),{'nombre':self.nombre.get(),'apellidos':self.apellidos.get(),'clase':self.clase.get(),'edad': self.edad.get(),'tutor':self.tutor.get(),'contacto':self.contacto.get()}))
         self.boton_modificar.grid(row=2, column = 4,pady=10,padx=10)
 
         
