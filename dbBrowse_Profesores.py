@@ -7,6 +7,10 @@ import gui_tooltip as ttp
 class myBrowse:
     # Create Window
     def __init__(self,browser_root) :
+        fondo = '#153147'
+        relieve = 'solid'
+        letra = 'white'
+        fondo_botones = '#5c2331'
 
         self.browser_root = browser_root
         # self.browser_root.title('GestoSchool')
@@ -35,13 +39,13 @@ class myBrowse:
         # self.row3 = self.browser_root.rowconfigure(3,weight= 1)
 
         #--Frame Para Entradas
-        self.frame_entry = tk.Frame(self.browser_root,bg='#EDEADE')
+        self.frame_entry = tk.Frame(self.browser_root,bg='#1b2a3b')
         self.frame_entry.grid(column=0,row=0,padx=1,pady=1,sticky='nswe')
 
         # -- Entries
-        self.dni = tk.Entry(self.frame_entry,bd=3)
-        self.nombre = tk.Entry(self.frame_entry,bd=3)
-        self.apellidos = tk.Entry(self.frame_entry,bd=3)
+        self.dni = tk.Entry(self.frame_entry,bd=1,relief='solid')
+        self.nombre = tk.Entry(self.frame_entry,bd=1.,relief='solid')
+        self.apellidos = tk.Entry(self.frame_entry,bd=1,relief='solid')
 
         #Tooltip :
         self.dni_ttp = ttp.CreateToolTip(self.dni,
@@ -51,31 +55,31 @@ class myBrowse:
                                                     '**USO:\n'
                                                     'Es imprescindible de usar ya que se requiere en todas las operaciones')
 
-        self.dni_label = tk.Label(self.frame_entry,text='DNI')
-        self.nombre_label = tk.Label(self.frame_entry,text='Nombre')
-        self.apellidos_label = tk.Label(self.frame_entry,text='Apellido')
+        self.dni_label = tk.Label(self.frame_entry,text='DNI',relief='solid',bg='#1b2a3b',fg='white',bd=0)
+        self.nombre_label = tk.Label(self.frame_entry,text='Nombre',relief='solid',bg='#1b2a3b',fg='white',bd=0)
+        self.apellidos_label = tk.Label(self.frame_entry,text='Apellido',relief='solid',bg='#1b2a3b',fg='white',bd=0)
 
         self.dni.grid(row=1,column=1,sticky='nsew',padx='5',pady='5')
         self.nombre.grid(row=2,column=1,sticky='nsew',padx='5',pady='5')
         self.apellidos.grid(row=3,column=1,sticky='nsew',padx='5',pady='5')
 
-        self.dni_label.grid(row=1,column=2,sticky='nsew',padx='5',pady='5')
-        self.nombre_label.grid(row=2,column=2,sticky='nsew',padx='5',pady='5')
-        self.apellidos_label.grid(row=3,column=2,sticky='nsew',padx='5',pady='5',)
+        self.dni_label.grid(row=1,column=0,sticky='nsew',padx='5',pady='5')
+        self.nombre_label.grid(row=2,column=0,sticky='nsew',padx='5',pady='5')
+        self.apellidos_label.grid(row=3,column=0,sticky='nsew',padx='5',pady='5',)
 
         # -- Botones
-        self.boton_insertar = tk.Button(self.frame_entry,text='Insertar Entrada',command=lambda :[imp.insert_profs(self.dni.get(),self.nombre.get(),self.apellidos.get()),clear_text(parameters),imp.data_display(self.frame_data)])
-        self.boton_insertar.grid(row=4, column = 1,pady=10,padx = 5 ,sticky='nsew')
+        self.boton_insertar = tk.Button(self.frame_entry,text='Insertar Entrada',bg=fondo_botones,bd=2,fg='white',relief='solid',command=lambda :[imp.insert_profs(self.dni.get(),self.nombre.get(),self.apellidos.get()),clear_text(parameters),imp.data_display(self.frame_data)])
+        self.boton_insertar.grid(row=1, column = 2,pady=10,padx = 5 ,sticky='nsew')
 
-        self.boton_modificar = tk.Button(self.frame_entry,text='Modificar Entrada',command=lambda: [imp.mod_data_profs(self.dni.get(),self.nombre.get(),self.apellidos.get()),clear_text(parameters),imp.data_display(self.frame_data)])
-        self.boton_modificar.grid(row=4, column = 2,pady=10,padx = 5 ,sticky='nsew')
+        self.boton_modificar = tk.Button(self.frame_entry,text='Modificar Entrada',bg=fondo_botones,relief='solid',bd=2,fg='white',command=lambda: [imp.mod_data_profs(self.dni.get(),{'nombre':self.nombre.get(),'profesores':self.apellidos.get()}),clear_text(parameters),imp.data_display(self.frame_data)])
+        self.boton_modificar.grid(row=2, column = 2,pady=10,padx = 5 ,sticky='nsew')
 
         
-        self.boton_modificar = tk.Button(self.frame_entry,text='Eliminar Entrada',command=lambda : [imp.delete_data_profs(self.dni.get()),clear_text(parameters),imp.data_display(self.frame_data)])
-        self.boton_modificar.grid(row=4, column = 3,pady=10,padx = 5 ,sticky='nsew')
+        self.boton_modificar = tk.Button(self.frame_entry,text='Eliminar Entrada',bg=fondo_botones,bd=2,fg='white',relief='solid',command=lambda : [imp.delete_data_profs(self.dni.get()),clear_text(parameters),imp.data_display(self.frame_data)])
+        self.boton_modificar.grid(row=3, column = 2,pady=10,padx = 5 ,sticky='nsew')
 
-        self.boton_refrescar = tk.Button(self.frame_entry,text='Refrescar Datos',command= lambda : [imp.data_display(self.frame_data),clear_text(parameters)])
-        self.boton_refrescar.grid(row=7, column = 1,pady=10)
+        self.boton_refrescar = tk.Button(self.frame_entry,text='Refrescar Datos',bg=fondo_botones,bd=2,fg='white',relief='solid',command= lambda : [imp.data_display(self.frame_data),clear_text(parameters)])
+        self.boton_refrescar.grid(row=4, column = 2,pady=10)
 
 
         # -- Frame para SQLITE display

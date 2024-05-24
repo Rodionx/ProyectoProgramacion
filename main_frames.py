@@ -7,6 +7,12 @@ class Mainframe:
     def __init__(self,root):
         self.root = root
         self.root.title ('GestoSchool' )
+        fondo = '#232A2F'
+        relieve = 'solid'
+        letra = 'white'
+        fondo_botones= "#5c2331"
+
+        
 
 
         # ----- Basic Layout ----- 
@@ -17,13 +23,13 @@ class Mainframe:
 
         # ------ Gridconfigure -----
         self.col1 = self.root.columnconfigure(0, weight = 1)
-        self.col2 = self.root.columnconfigure(1, weight = 4)
+        self.col2 = self.root.columnconfigure(1, weight = 3)
 
         self.row = self.root.rowconfigure(0,weight = 1)
 
         # ------ Frames -------
-        self.dashboard = tk.Frame(self.root)
-        self.display = tk.Frame(self.root,bg="grey")
+        self.dashboard = tk.Frame(self.root,bg=fondo)
+        self.display = tk.Frame(self.root,bg="white")
 
 
 
@@ -36,10 +42,10 @@ class Mainframe:
 
         ## --- |Dashboard|-----
                 # ---- Text Buttons ----
-        profesores_button = tk.Button(self.dashboard, text='Profesores',font=('arial',16),width=10,command = lambda: profesores.myBrowse(self.display)) 
-        notas_button = tk.Button(self.dashboard, text='Notas',font=('arial',16),width=10) #command = lambda: pon aqui tu constructor
-        alumnos_butto = tk.Button(self.dashboard, text='Alumnos',font=('arial',16),width=10,command = lambda: estudiantes.myBrowse(self.display))
-        asignaturas_button = tk.Button(self.dashboard, text='Asignaturas',font=('arial',16),width=10, ) #command = lambda: pon aqui tu constructor
+        profesores_button = tk.Button(self.dashboard,bg=fondo_botones,fg='white',relief='solid',bd=2,text='Profesores',font=('arial',16),width=10,command = lambda: profesores.myBrowse(self.display)) 
+        notas_button = tk.Button(self.dashboard,bg=fondo_botones, fg='white',relief='solid',bd=2,text='Notas',font=('arial',16),width=10) #command = lambda: pon aqui tu constructor
+        alumnos_butto = tk.Button(self.dashboard,bg=fondo_botones,fg='white',relief='solid',bd=2,text='Alumnos',font=('arial',16),width=10,command = lambda: estudiantes.myBrowse(self.display))
+        asignaturas_button = tk.Button(self.dashboard,bg=fondo_botones,fg='white',bd=2,relief='solid', text='Asignaturas',font=('arial',16),width=10, ) #command = lambda: pon aqui tu constructor
 
              # ---- Button Placement ---- 
         profesores_button.pack(side='top',expand=True)

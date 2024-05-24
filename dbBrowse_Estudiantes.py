@@ -8,6 +8,10 @@ import gui_tooltip as ttp
 class myBrowse:
     # Create Window
     def __init__(self,browser_root) :
+        fondo = '#153147'
+        relieve = 'solid'
+        letra = 'white'
+        fondo_botones = "#5c2331"
 
 
 
@@ -41,17 +45,17 @@ class myBrowse:
         # self.row3 = self.browser_root.rowconfigure(3,weight= 1)
 
         #--Frame Para Entradas
-        self.frame_entry = tk.Frame(self.browser_root,bg='#EDEADE')
+        self.frame_entry = tk.Frame(self.browser_root,bg=fondo)
         self.frame_entry.grid(column=0,row=0,padx=1,pady=1,sticky='nswe')
 
         # -- Entries
-        self.dni = tk.Entry(self.frame_entry,bd=3)
-        self.nombre = tk.Entry(self.frame_entry,bd=3)
-        self.apellidos = tk.Entry(self.frame_entry,bd=3)
-        self.clase = tk.Entry(self.frame_entry,bd=3)
-        self.edad = tk.Entry(self.frame_entry,bd=3)
-        self.tutor = tk.Entry(self.frame_entry,bd=3)
-        self.contacto = tk.Entry(self.frame_entry,bd=3)
+        self.dni = tk.Entry(self.frame_entry,bd=1)
+        self.nombre = tk.Entry(self.frame_entry,bd=1)
+        self.apellidos = tk.Entry(self.frame_entry,bd=1)
+        self.clase = tk.Entry(self.frame_entry,bd=1)
+        self.edad = tk.Entry(self.frame_entry,bd=1)
+        self.tutor = tk.Entry(self.frame_entry,bd=1)
+        self.contacto = tk.Entry(self.frame_entry,bd=1)
 
         #-- Tooltip 
         self.dni_ttp = ttp.CreateToolTip(self.dni,
@@ -61,13 +65,13 @@ class myBrowse:
                                                     '- **USO:\n'
                                                     'Es imprescindible de usar ya que se requiere en todas las operaciones')
 
-        self.dni_label = tk.Label(self.frame_entry,text='DNI')
-        self.nombre_label = tk.Label(self.frame_entry,text='Nombre')
-        self.apellidos_label = tk.Label(self.frame_entry,text='Apellido')
-        self.clase_label = tk.Label(self.frame_entry,text='Clase')
-        self.edad_label = tk.Label(self.frame_entry,text='Edad')
-        self.tutor_label = tk.Label(self.frame_entry,text='Tutor')
-        self.contacto_label = tk.Label(self.frame_entry,text='Contacto')
+        self.dni_label = tk.Label(self.frame_entry,text='DNI',bg=fondo,relief=relieve,fg=letra,bd=0)
+        self.nombre_label = tk.Label(self.frame_entry,text='Nombre',bg=fondo,relief=relieve,fg=letra,bd=0)
+        self.apellidos_label = tk.Label(self.frame_entry,text='Apellido',bg=fondo,relief=relieve,fg=letra,bd=0)
+        self.clase_label = tk.Label(self.frame_entry,text='Clase',bg=fondo,relief=relieve,fg=letra,bd=0)
+        self.edad_label = tk.Label(self.frame_entry,text='Edad',bg=fondo,relief=relieve,fg=letra,bd=0)
+        self.tutor_label = tk.Label(self.frame_entry,text='Tutor',bg=fondo,relief=relieve,fg=letra,bd=0)
+        self.contacto_label = tk.Label(self.frame_entry,text='Contacto',bg=fondo,relief=relieve,fg=letra,bd=0)
 
         self.dni.grid(row=1,column=1,sticky='nsew',padx='5',pady='5')
         self.nombre.grid(row=2,column=1,sticky='nsew',padx='5',pady='5')
@@ -89,17 +93,17 @@ class myBrowse:
        
 
         # -- Botones
-        self.boton_insertar = tk.Button(self.frame_entry,text='Insertar Entrada', command= lambda : [imp.insert_data_student(self.dni.get(),{'nombre':self.nombre.get(),
-                                                                                                                                         'apellidos':self.apellidos.get(),
-                                                                                                                                         'clase':self.clase.get(),
-                                                                                                                                         'edad': self.edad.get(),
-                                                                                                                                         'tutor':self.tutor.get(),
-                                                                                                                                         'contacto':self.contacto.get()}) ,
+        self.boton_insertar = tk.Button(self.frame_entry,text='Insertar Entrada',bg=fondo_botones,relief=relieve,fg=letra, command= lambda : [imp.insert_data_student(self.dni.get(),self.nombre.get(),
+                                                                                                                                         self.apellidos.get(),
+                                                                                                                                         self.clase.get(),
+                                                                                                                                         self.edad.get(),
+                                                                                                                                         self.tutor.get(),
+                                                                                                                                         self.contacto.get()) ,
                                                                                                       clear_text(parameters)
-                                                                                                      ,imp.data_display()])
+                                                                                                      ,imp.data_display(self.frame_data)])
         self.boton_insertar.grid(row=1, column = 4,pady=10,padx=0)
 
-        self.boton_modificar = tk.Button(self.frame_entry,text='Modificar Entrada',command= lambda : [ 
+        self.boton_modificar = tk.Button(self.frame_entry,text='Modificar Entrada',bg=fondo_botones,relief=relieve,fg=letra,command= lambda : [ 
                                                                                                     imp.mod_data_student(self.dni.get(),{'nombre':self.nombre.get(),
                                                                                                                                          'apellidos':self.apellidos.get(),
                                                                                                                                          'clase':self.clase.get(),
@@ -107,13 +111,13 @@ class myBrowse:
                                                                                                                                          'tutor':self.tutor.get(),
                                                                                                                                          'contacto':self.contacto.get()}) ,
                                                                                                       clear_text(parameters)
-                                                                                                      ,imp.data_display()])
+                                                                                                      ,imp.data_display(self.frame_data)])
         self.boton_modificar.grid(row=2, column = 4,pady=10,padx=10)
 
         
-        self.boton_modificar = tk.Button(self.frame_entry,text='Eliminar Entrada',command= lambda : [ imp.delete_data_students(self.dni.get()),
+        self.boton_modificar = tk.Button(self.frame_entry,text='Eliminar Entrada',bg=fondo_botones,relief=relieve,fg=letra,command= lambda : [ imp.delete_data_students(self.dni.get()),
                                                                                                      clear_text(parameters),
-                                                                                                     imp.data_display()])
+                                                                                                     imp.data_display(self.frame_data)])
         self.boton_modificar.grid(row=3, column = 4,pady=10,padx=10)
 
                 
@@ -155,7 +159,7 @@ class myBrowse:
                 x.delete(0,"end")
         
         parameters = (self.dni,self.nombre,self.apellidos,self.tutor,self.contacto,self.clase,self.edad)
-        self.boton_refrescar = tk.Button(self.frame_entry,text='Refrescar Datos',command=lambda :[imp.data_display(),clear_text(parameters)])
+        self.boton_refrescar = tk.Button(self.frame_entry,text='Refrescar Datos',bg=fondo_botones,relief=relieve,fg=letra,command=lambda :[imp.data_display(self.frame_data),clear_text(parameters)])
         self.boton_refrescar.grid(row=4, column = 4,pady=10,padx=10)
         
 
