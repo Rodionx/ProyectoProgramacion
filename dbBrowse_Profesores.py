@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 import sqlite3 as sql
 from tkinter import ttk
 import sql_profesores as imp
@@ -7,6 +8,7 @@ import gui_tooltip as ttp
 class myBrowse:
     # Create Window
     def __init__(self,browser_root) :
+      
         fondo = '#153147'
         relieve = 'solid'
         letra = 'white'
@@ -25,20 +27,21 @@ class myBrowse:
 
         #Grid Structure
 
-        
-
         # -- Columns
         #self.col0= self.browser_root.columnconfigure(0, weight = 1)
         self.col1 = self.browser_root.columnconfigure(0, weight = 1)
+
         #self.col2= self.browser_root.columnconfigure(1, weight = 1)
         #self.col3= self.browser_root.columnconfigure(2, weight = 1)
+
         #-- Rows
         self.row0 = self.browser_root.rowconfigure(0,weight= 1)
         self.row1 = self.browser_root.rowconfigure(1,weight= 1)
-        # self.row2 = self.browser_root.rowconfigure(2,weight= 1)
-        # self.row3 = self.browser_root.rowconfigure(3,weight= 1)
+        self.row2 = self.browser_root.rowconfigure(2,weight= 1)
+        self.row3 = self.browser_root.rowconfigure(3,weight= 1)
 
         #--Frame Para Entradas
+
         self.frame_entry = tk.Frame(self.browser_root,bg='#1b2a3b')
         self.frame_entry.grid(column=0,row=0,padx=1,pady=1,sticky='nswe')
 
@@ -59,9 +62,9 @@ class myBrowse:
         self.nombre_label = tk.Label(self.frame_entry,text='Nombre',relief='solid',bg='#1b2a3b',fg='white',bd=0)
         self.apellidos_label = tk.Label(self.frame_entry,text='Apellido',relief='solid',bg='#1b2a3b',fg='white',bd=0)
 
-        self.dni.grid(row=1,column=1,sticky='nsew',padx='5',pady='5')
-        self.nombre.grid(row=2,column=1,sticky='nsew',padx='5',pady='5')
-        self.apellidos.grid(row=3,column=1,sticky='nsew',padx='5',pady='5')
+        self.dni.grid(row=1,column=1,sticky='w',padx='5',pady='5')
+        self.nombre.grid(row=2,column=1,sticky='ew',padx='5',pady='5')
+        self.apellidos.grid(row=3,column=1,sticky='e',padx='5',pady='5')
 
         self.dni_label.grid(row=1,column=0,sticky='nsew',padx='5',pady='5')
         self.nombre_label.grid(row=2,column=0,sticky='nsew',padx='5',pady='5')
@@ -105,16 +108,18 @@ class myBrowse:
             for x in params:
                 x.delete(0,"end")
         
+
         parameters = (self.dni,self.nombre,self.apellidos)
 
+        # Connect to the SQLite database
+        conn = sql.connect('Colegio.db')
+        c = conn.cursor()
 
+        c.execute("PRAGMA table_info(profesores)")  # Replace 'your_table_name' with the actual table name
+        column_names = [row[1] for row in c.fetchall()]
         
-                        
-                        
 
+                        
         # Mainloop
         imp.data_display(self.frame_data)
         # self.browser_root.mainloop()
-
-# app = tk.Tk()
-# root = myBrowse(app)

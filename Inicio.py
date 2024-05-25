@@ -28,6 +28,8 @@ class LoginApp:
 
         #logo
         self.logo_label = tk.Label(self.logo_frame, image=self.img)
+        self.root.iconphoto(True,self.img)
+
         self.logo_label.pack(padx=22, pady=20, side=tk.LEFT)
 
         # Etiqueta y campo de entrada para el usuario
@@ -50,6 +52,7 @@ class LoginApp:
         self.login_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
         
     def login(self):
+        repe = False
         username = self.username_entry.get()
         password = self.password_entry.get()
 
@@ -60,26 +63,32 @@ class LoginApp:
         consultas = {}
         for fila in cursor:
             consultas.update({fila[0] : fila[1]})
-            # conexion.execute(f"INSERT INTO {tabla} VALUES('user1','')")
+            # conexion.execute(f"UPDATE {tabla} SET pass = '' WHERE usuario = 'user1'")
             # conexion.commit()
-            
+        count = 0  
         for u,p in consultas.items():
+            count = count +1
             imp.usuarioGeneral = u
             passComp = str(p)
-            
             if username == u:
                 if username == u and p == '':
                     self.login_frame.destroy() 
                     PassApp(self.root)
                 else:
                     if username == u and bcrypt.checkpw(password.encode('utf-8'),passComp.encode('utf-8')):
+                        repe = True
                         self.login_frame.destroy()
                         imp.ancho_ventana = 850
                         imp.alto_ventana = 650
                         menu.Menu(self.root)
-                    else:
 
+                    else:
+                        repe = True
                         messagebox.showerror("Error de Login", "Usuario o contraseña incorrectos")
+            #Elif para cuando acabe el bucle esta mal elususario
+            elif len(consultas) == count and repe == False:
+                 messagebox.showerror("Error de Login", "Usuario incorrecto")
+                # messagebox.showerror("Error de Login", "Usuario o contraseña incorrectos")
 
         conexion.close()
         

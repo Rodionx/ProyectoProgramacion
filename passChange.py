@@ -4,7 +4,6 @@ import bcrypt
 import sqlite3
 import importaciones as imp
 import menu as menu
-import Inicio as inicio
 
 class PassApp:
     pos = 0
@@ -60,11 +59,11 @@ class PassApp:
                 conexion.commit()
             except Exception as e:
                 print(e)
-            self.login_frame.destroy()
+            self.pass_frame.destroy()
             imp.ancho_ventana = 850
             imp.alto_ventana = 650
             menu.Menu(self.root)
         else:
-                    messagebox.showerror("Las contraseñas no coinciden", "Las contraseñas no coinciden\nIntentelo de nuevo")
+                messagebox.showerror("Las contraseñas no coinciden", "Las contraseñas no coinciden\nIntentelo de nuevo")
 
         
