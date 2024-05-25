@@ -1,33 +1,6 @@
 from tkinter import messagebox
 import sqlite3 as sqlite
 
-'''
-def mod_data_student(dni,nombre,apellido,clase,edad,tutor,contacto):
-            try:
-                conn = sqlite.connect('Colegio.db')
-                c = conn.cursor()
-
-                c.execute("""UPDATE alumnos
-                        SET
-                            nombre = ?,
-                            apellido = ?,
-                            clase = ?,
-                            edad = ?,
-                            tutor = ?,
-                            contacto = ?
-                        WHERE
-                            DNI_alumno = ?
-
-                """,(nombre,apellido,clase,edad,tutor,contacto,dni))
-
-
-                conn.commit()
-                print("Update successful")
-            except  Exception as e:
-                messagebox.showerror(message=f"Error {e}")
-            finally:
-                conn.close()
-'''
 def mod_data_student(dni,params):
             values_set = [] 
             fields = []
